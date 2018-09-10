@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {LoginPage} from "../login/login";
 import { Storage } from '@ionic/storage';
+import {BaseUI} from "../../common/baseui";
+import {RestProvider} from "../../providers/rest/rest";
+import {UserPage} from "../user/user";
+
 
 /**
  * Generated class for the MorePage page.
@@ -15,15 +19,22 @@ import { Storage } from '@ionic/storage';
   selector: 'page-more',
   templateUrl: 'more.html',
 })
-export class MorePage {
+export class MorePage extends BaseUI{
 
   public notLogin: boolean = true;
   public logined:boolean = false;
 
+  headface: string;
+  userinfo: string[];
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalCtr: ModalController,
-              public storage: Storage) {
+              public storage: Storage,
+              public loadingCtrl: LoadingController,
+              public toastCtrl: ToastController,
+              public rest: RestProvider) {
+    super();
   }
 
   ionViewDidLoad() {
@@ -40,8 +51,19 @@ export class MorePage {
     //存储用户登录信息
     this.storage.get('UserId').then((val) => {
       if(val != null){
-        this.notLogin = false;
-        this.logined = true;
+        //加载用户数据
+        var loading = super.showLoading(this.loadingCtrl,"加载中...");
+        this.rest.getUserInfo(val)
+          .subscribe(
+            userinfo => {
+              this.userinfo = userinfo;
+              this.headface = userinfo["UserHeadface"] + "?" + (new Date().valueOf())  //加后缀防止浏览器缓存图片不改变
+              this.notLogin = false;
+              this.logined = true;
+              loading.dismiss();
+            }
+          );
+
       }else{
         this.notLogin = true;
         this.logined = false;
@@ -49,4 +71,8 @@ export class MorePage {
     })
   }
 
+  /*去个人信息页面*/
+  gotoUserPage(){
+    this.navCtrl.push(UserPage);
+  }
 }

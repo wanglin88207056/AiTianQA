@@ -16,6 +16,8 @@ import {DiscoveryPage} from "../pages/discovery/discovery";
 import { RestProvider } from '../providers/rest/rest';
 import {LoginPage} from "../pages/login/login";
 import {IonicStorageModule} from "@ionic/storage";
+import {RegisterPage} from "../pages/register/register";
+import {UserPage} from "../pages/user/user";
 
 
 @NgModule({
@@ -27,13 +29,17 @@ import {IonicStorageModule} from "@ionic/storage";
     NotificationPage,
     MorePage,
     LoginPage,
+    RegisterPage,
+    UserPage,
     TabsPage
   ],
   imports: [
     BrowserModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      backButtonText: '返回'
+    }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -45,6 +51,8 @@ import {IonicStorageModule} from "@ionic/storage";
     NotificationPage,
     MorePage,
     LoginPage,
+    RegisterPage,
+    UserPage,
     TabsPage
   ],
   providers: [

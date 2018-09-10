@@ -47,6 +47,27 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlLogin+"?mobile="+mobile+"&password="+password);
   }
 
+  /*注册方法 * 全局获取 HTTP 请求的方法
+   * @private
+   * @param {string} mobile
+   * @param {string} nickname
+   * @param {string} password
+   * @returns {Observable<string[]>}
+   * @memberof RestProvider
+   */
+  register(mobile,nickname,password): Observable<string[]>{
+    return this.getUrlReturn(this.apiUrlRegister+ "?mobile="+ mobile + "&nickname=" + nickname + "&password="+ password);
+  }
+
+  /*获取用户信息 *
+   * @private
+   * @param {string} userid
+   * @returns {Observable<string[]>}
+   * @memberof RestProvider
+   */
+  getUserInfo(userId){
+    return this.getUrlReturn(this.apiUrlUserInfo + "?userid=" + userId)
+  }
 
   /**
    * 全局获取 HTTP 请求的方法
@@ -73,7 +94,7 @@ export class RestProvider {
    * @memberof RestProvider
    */
   private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
+    if (error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
     } else {
