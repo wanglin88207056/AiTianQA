@@ -42,6 +42,10 @@ export class MorePage extends BaseUI{
   }
   showModal(){
     let modal = this.modalCtr.create(LoginPage);
+    // 关闭后的回调
+    modal.onDidDismiss(() =>{
+      this.loadUserPage();
+    });
     modal.present();
   }
   ionViewDidEnter(){

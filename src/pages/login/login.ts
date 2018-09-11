@@ -45,6 +45,7 @@ export class LoginPage extends BaseUI{
             //处理登录成功页面
             this.storage.set('UserId',f["UserId"]);
             loading.dismiss();
+            this.viewCtr.dismiss();
           }else{
             loading.dismiss();
             super.showToast(this.toastCtrl,f["StatusContent"])

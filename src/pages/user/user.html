@@ -21,13 +21,13 @@
   <ion-list>
     <ion-item>
       <ion-label>用户昵称</ion-label>
-      <ion-input type="text" value="Wanglin"></ion-input>
+      <ion-input type="text" [(ngModel)]="nickname"></ion-input>
     </ion-item>
   </ion-list>
   <div padding text-center class="marginTop paddingTop">
-    <button ion-button color="primary" block>保存</button>
+    <button ion-button color="primary" block (click)="updateNickName();">保存</button>
   </div>
   <div padding text-center class="paddingTop">
-    <button ion-button color="danger" block>注销</button>
+    <button ion-button color="danger" block (click)="logout();">注销</button>
   </div>
 </ion-content>
