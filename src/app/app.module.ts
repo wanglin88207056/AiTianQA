@@ -18,6 +18,7 @@ import {LoginPage} from "../pages/login/login";
 import {IonicStorageModule} from "@ionic/storage";
 import {RegisterPage} from "../pages/register/register";
 import {UserPage} from "../pages/user/user";
+import {HeadfacePage} from "../pages/headface/headface";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {UserPage} from "../pages/user/user";
     LoginPage,
     RegisterPage,
     UserPage,
+    HeadfacePage,
     TabsPage
   ],
   imports: [
@@ -53,6 +55,7 @@ import {UserPage} from "../pages/user/user";
     LoginPage,
     RegisterPage,
     UserPage,
+    HeadfacePage,
     TabsPage
   ],
   providers: [
