@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {
-  ActionSheetController, IonicPage, LoadingController, ModalController, NavController, NavParams,
-  ToastController, Platform
+  ActionSheetController, IonicPage,normalizeURL, LoadingController, ModalController, NavController, NavParams,
+  ToastController, Platform, ViewController
 } from 'ionic-angular';
 import {RestProvider} from "../../providers/rest/rest";
 import {Storage} from "@ionic/storage";
@@ -44,7 +44,8 @@ export class HeadfacePage extends BaseUI{
               public transfer: FileTransfer,
               public file: File,
               public filePath: FilePath,
-              public platform: Platform
+              public platform: Platform,
+              public viewCtrl: ViewController
               ) {
     super();
   }
@@ -65,13 +66,13 @@ export class HeadfacePage extends BaseUI{
         {
           text: '从图片库中选择',
           handler: () => {
-
+            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
         {
           text: '使用相机',
           handler: () => {
-
+            this.takePicture(this.camera.PictureSourceType.CAMERA);
           }
         },
         {
@@ -134,5 +135,45 @@ export class HeadfacePage extends BaseUI{
       n = d.getTime(),
       newFileName = n+".jpg";
     return newFileName;
+  }
+
+  // 处理图片的路径为可以上传的路径
+  public pathForImage(img){
+    if(img === null){
+      return '';
+    }else{
+      return normalizeURL(cordova.file.dataDirectory + img);
+    }
+  }
+
+  uploadImage(){
+    var url = 'https://imoocqa.gugujiankong.com/api/account/uploadheadface';
+    var targetPath = this.pathForImage(this.lastImage);
+    var filename = this.userId + ".jpg"; //定义上传后的文件名
+    var options = {
+      fileKey: "file",
+      fileName: filename,
+      chunkedMode: false,
+      mimeType: "multipart/form-data",
+      params:{
+        'fileName': filename,
+        'userId': this.userId
+      }
+    };
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    var loading = super.showLoading(this.loadingCtrl,"上传中...");
+    //开始正式上传
+    fileTransfer.upload(targetPath,url,options).then(data =>{
+      loading.dismiss();
+      super.showToast(this.toastCtrl,"图片上传成功.");
+      //用户看清弹框后再关闭页面
+      setTimeout(() => {
+        this.viewCtrl.dismiss();
+      },3000)
+    },err =>{
+      loading.dismiss();
+      super.showToast(this.toastCtrl,"图片上传发生错误请重试.");
+    })
+
   }
 }

@@ -19,6 +19,11 @@ import {IonicStorageModule} from "@ionic/storage";
 import {RegisterPage} from "../pages/register/register";
 import {UserPage} from "../pages/user/user";
 import {HeadfacePage} from "../pages/headface/headface";
+// 导入外部加载进来的组件
+import { File } from "@ionic-native/file";
+import { FileTransfer,  FileTransferObject } from '@ionic-native/file-transfer';
+import {  FilePath } from "@ionic-native/file-path";
+import {  Camera } from "@ionic-native/camera";
 
 
 @NgModule({
@@ -62,7 +67,11 @@ import {HeadfacePage} from "../pages/headface/headface";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    File,
+    FileTransfer,
+    FilePath,
+    Camera
   ]
 })
 export class AppModule {}
