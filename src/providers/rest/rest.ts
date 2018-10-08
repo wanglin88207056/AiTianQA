@@ -83,7 +83,8 @@ export class RestProvider {
   /*保存提问 *
  * @private
  * @param {string} userid
- * @param {string} nickname
+ * @param {string} title
+ * @param {string} content
  * @returns {Observable<string[]>}
  * @memberof RestProvider
  */
