@@ -80,6 +80,17 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlUpdateNickName+ "?userid="+ userId + "&nickname=" + nickname);
   }
 
+  /*保存提问 *
+ * @private
+ * @param {string} userid
+ * @param {string} nickname
+ * @returns {Observable<string[]>}
+ * @memberof RestProvider
+ */
+  saveQuestion(userId,title,content): Observable<string[]>{
+    return this.getUrlReturn(this.apiUrlQuestionSave+ "?userid="+ userId + "&title=" + title + "&content="+ content);
+  }
+
   /**
    * 全局获取 HTTP 请求的方法
    * @private
