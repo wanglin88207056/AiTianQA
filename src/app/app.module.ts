@@ -24,11 +24,13 @@ import { File } from "@ionic-native/file";
 import { FileTransfer,  FileTransferObject } from '@ionic-native/file-transfer';
 import {  FilePath } from "@ionic-native/file-path";
 import {  Camera } from "@ionic-native/camera";
+import {QuestionPage} from "../pages/question/question";
 
 
 @NgModule({
   declarations: [
     MyApp,
+    QuestionPage,
     HomePage,
     DiscoveryPage,
     ChatPage,
@@ -52,6 +54,7 @@ import {  Camera } from "@ionic-native/camera";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    QuestionPage,
     HomePage,
     DiscoveryPage,
     ChatPage,
