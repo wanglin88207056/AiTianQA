@@ -25,12 +25,14 @@ import { FileTransfer,  FileTransferObject } from '@ionic-native/file-transfer';
 import {  FilePath } from "@ionic-native/file-path";
 import {  Camera } from "@ionic-native/camera";
 import {QuestionPage} from "../pages/question/question";
+import {DetailsPage} from "../pages/details/details";
 
 
 @NgModule({
   declarations: [
     MyApp,
     QuestionPage,
+    DetailsPage,
     HomePage,
     DiscoveryPage,
     ChatPage,
@@ -55,6 +57,7 @@ import {QuestionPage} from "../pages/question/question";
   entryComponents: [
     MyApp,
     QuestionPage,
+    DetailsPage,
     HomePage,
     DiscoveryPage,
     ChatPage,

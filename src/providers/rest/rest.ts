@@ -92,6 +92,18 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlQuestionSave+ "?userid="+ userId + "&title=" + title + "&content="+ content);
   }
 
+  /*请求首页（feeds）信息流 *
+* @private
+* @param {string} userid
+* @param {string} title
+* @param {string} content
+* @returns {Observable<string[]>}
+* @memberof RestProvider
+*/
+  getFeeds(): Observable<string[]>{
+    return this.getUrlReturn(this.apiUrlFeeds);
+  }
+
   /**
    * 全局获取 HTTP 请求的方法
    * @private
