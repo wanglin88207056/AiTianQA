@@ -59,6 +59,30 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlRegister+ "?mobile="+ mobile + "&nickname=" + nickname + "&password="+ password);
   }
 
+  /*获取问题的详情*
+* @private
+* @param {string} id //问题id
+*/
+  getQuestion(id): Observable<string[]>{
+    return this.getUrlReturn(this.apiUrlGetQuestion+"?id="+id);
+  }
+
+  /*获取问题的详情，传递userId,获取当前用户有没有关注此问题*
+* @private
+* @param {string} id //问题id
+*/
+  getQuestionWithUser(questionId,userId): Observable<string[]>{
+    return this.getUrlReturn(this.apiUrlGetQuestionWithUser+"?id="+questionId + "&userid="+ userId);
+  }
+
+  /*关注问题*
+* @private
+* @param {string} id //问题id
+*/
+  saveFavorite(questionId,userId): Observable<string[]>{
+    return this.getUrlReturn(this.apiUrlSaveFavourite+"?questionid="+questionId + "&userid="+ userId);
+  }
+
   /*获取用户信息 *
    * @private
    * @param {string} userid

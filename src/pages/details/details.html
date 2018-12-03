@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>标题</ion-title>
+    <ion-title>{{question?.ContentTitle}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,40 +16,26 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      文章的内容
-      <p>500&nbsp;个关注&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;个回答</p>
-      <button ion-button small><ion-icon name="add"></ion-icon>&nbsp;关注</button>
+      {{question?.Content}}
+      <p>{{question?.LikeCount}}&nbsp;个关注&nbsp;&nbsp;&nbsp;&nbsp;{{question?.CommentCount}}&nbsp;个回答</p>
+      <button ion-button small color="secondary" (click)="saveFavorite();"><ion-icon name="add"></ion-icon>&nbsp;{{isFavorite ? "取消关注" : "关注"}}</button>
       &nbsp;&nbsp;
-      <button ion-button small><ion-icon name="add"></ion-icon>&nbsp;回答</button>
+      <button ion-button small [disabled]="isMyQuestion"><ion-icon name="add"></ion-icon>&nbsp;回答</button>
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngFor="let a of answers">
     <ion-item>
       <ion-avatar item-start>
-        <img src="">
+        <img src="{{a.HeaderFace}}">
       </ion-avatar>
-      <p>Wanglin
+      <p>{{a.UserNickName}}
         <ion-icon class="more_button" name="more"></ion-icon>
       </p>
     </ion-item>
     <ion-card-content>
-      <p>用户回答内容</p>
-      <p class="answer_date">2017-01-01</p>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="">
-      </ion-avatar>
-      <p>Wanglin
-        <ion-icon class="more_button" name="more"></ion-icon>
-      </p>
-    </ion-item>
-    <ion-card-content>
-      <p>用户回答内容</p>
-      <p class="answer_date">2017-01-01</p>
+      <p>{{a.Content}}</p>
+      <p class="answer_date">{{a.CreateDateTime}}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

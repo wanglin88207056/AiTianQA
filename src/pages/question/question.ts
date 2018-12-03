@@ -30,14 +30,14 @@ export class QuestionPage extends BaseUI{
   content: string;
   errorMessage: any;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public viewCtrl: ViewController,
-              public storage: Storage,
-              public loadingCtrl: LoadingController,
-              public rest: RestProvider,
-              public toastCtrl: ToastController) {
-    super();
+  constructor( public navCtrl: NavController,
+                public navParams: NavParams,
+                public viewCtrl: ViewController,
+                public storage: Storage,
+                public loadingCtrl: LoadingController,
+                public rest: RestProvider,
+                public toastCtrl: ToastController) {
+      super();
   }
 
   //关闭当前页面
@@ -59,6 +59,8 @@ export class QuestionPage extends BaseUI{
             }
           },
             error => this.errorMessage = <any>error)
+      }else{
+        super.showToast(this.toastCtrl,"请登录后发布提问...")
       }
     })
   }
