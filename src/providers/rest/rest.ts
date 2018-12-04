@@ -83,6 +83,19 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlSaveFavourite+"?questionid="+questionId + "&userid="+ userId);
   }
 
+  /*关注问题*
+* @private
+* @param {string} userId //用户id
+* @param{string}  quedtionId //问题id
+* @param{string}  content //回答内容
+*
+*/
+  answer(userId,questionId,content): Observable<string[]>{
+    return this.getUrlReturn(this.apiUrlAnswer+"?userid="+userId+"&questionid="+questionId + "&content="+ content);
+  }
+
+
+
   /*获取用户信息 *
    * @private
    * @param {string} userid

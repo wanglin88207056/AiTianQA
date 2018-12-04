@@ -20,7 +20,7 @@
       <p>{{question?.LikeCount}}&nbsp;个关注&nbsp;&nbsp;&nbsp;&nbsp;{{question?.CommentCount}}&nbsp;个回答</p>
       <button ion-button small color="secondary" (click)="saveFavorite();"><ion-icon name="add"></ion-icon>&nbsp;{{isFavorite ? "取消关注" : "关注"}}</button>
       &nbsp;&nbsp;
-      <button ion-button small [disabled]="isMyQuestion"><ion-icon name="add"></ion-icon>&nbsp;回答</button>
+      <button ion-button small [disabled]="isMyQuestion" (click)="showAnswerPage();"><ion-icon name="add"></ion-icon>&nbsp;回答</button>
     </ion-card-content>
   </ion-card>
 
