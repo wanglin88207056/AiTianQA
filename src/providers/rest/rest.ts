@@ -141,6 +141,16 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlFeeds);
   }
 
+  /*请求发现页（feeds）信息流 *
+* @private
+* @returns {Observable<string[]>}
+* @memberof RestProvider
+*/
+  getQuestions(): Observable<string[]>{
+    return this.getUrlReturn(this.apiUrlQuestionList);
+  }
+
+
   /**
    * 全局获取 HTTP 请求的方法
    * @private

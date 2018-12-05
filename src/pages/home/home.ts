@@ -1,63 +1,65 @@
 import { Component } from '@angular/core';
-import {LoadingController, ModalController, NavController, Tabs} from 'ionic-angular';
-import {QuestionPage} from "../question/question";
-import {BaseUI} from "../../common/baseui";
-import {RestProvider} from "../../providers/rest/rest";
-import {DetailsPage} from "../details/details";
-
+import { NavController, ModalController, Tabs, LoadingController } from 'ionic-angular';
+import { QuestionPage } from "../question/question";
+import { BaseUI } from "../../common/baseui";
+import { RestProvider } from '../../providers/rest/rest';
+import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage extends BaseUI{
+export class HomePage extends BaseUI {
 
   feeds: string[];
   errorMessage: any;
 
   constructor(public navCtrl: NavController,
-              public modalCtrl:ModalController,
+              public modalCtrl: ModalController,
               public loadingCtrl: LoadingController,
               public rest: RestProvider) {
     super();
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     this.getFeeds();
   }
 
-  // 进入问题页
-  gotoQuestion(){
+  gotoQuestion() {
     var modal = this.modalCtrl.create(QuestionPage);
     modal.present();
   }
 
-  // 进入聊天页
-  gotoChat(){
+  gotoChat() {
     this.selectTab(2);
   }
 
-  //选定指定的tab
-  selectTab(index:number){
-    var t:Tabs = this.navCtrl.parent;
+  /**
+   * 选定指定的 tab
+   *
+   * @param {number} index
+   * @memberof HomePage
+   */
+  selectTab(index: number) {
+    var t: Tabs = this.navCtrl.parent;
     t.select(index);
   }
 
-  getFeeds(){
-    var loading = super.showLoading(this.loadingCtrl,"数据加载中...")
+  getFeeds() {
+    var loading = super.showLoading(this.loadingCtrl, "加载中...");
     this.rest.getFeeds()
       .subscribe(
         f => {
           this.feeds = f;
           loading.dismiss();
         },
-        error => this.errorMessage = <any>error
-      );
+        error => {
+          this.errorMessage = <any>error
+        }
+        );
   }
 
-  //进入详情页
-  gotoDetails(questionId){
-    this.navCtrl.push(DetailsPage,{id: questionId});
+  gotoDetails(questionId) {
+    this.navCtrl.push(DetailsPage, { id: questionId });
   }
-
 }
