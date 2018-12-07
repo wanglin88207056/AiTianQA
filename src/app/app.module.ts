@@ -9,7 +9,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import {ChatPage} from "../pages/chat/chat";
 import {NotificationPage} from "../pages/notification/notification";
 import {MorePage} from "../pages/more/more";
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {DiscoveryPage} from "../pages/discovery/discovery";
@@ -27,6 +26,7 @@ import {  Camera } from "@ionic-native/camera";
 import {QuestionPage} from "../pages/question/question";
 import {DetailsPage} from "../pages/details/details";
 import {AnswerPage} from "../pages/answer/answer";
+import {ChatDetailsPage} from "../pages/chat-details/chat-details";
 
 
 @NgModule({
@@ -38,6 +38,7 @@ import {AnswerPage} from "../pages/answer/answer";
     HomePage,
     DiscoveryPage,
     ChatPage,
+    ChatDetailsPage,
     NotificationPage,
     MorePage,
     LoginPage,
@@ -64,6 +65,7 @@ import {AnswerPage} from "../pages/answer/answer";
     HomePage,
     DiscoveryPage,
     ChatPage,
+    ChatDetailsPage,
     NotificationPage,
     MorePage,
     LoginPage,
