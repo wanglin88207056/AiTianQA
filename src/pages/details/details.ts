@@ -37,7 +37,7 @@ export class DetailsPage extends BaseUI {
     super();
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.id = this.navParams.get('id');
     this.loadQuestion(this.id);
   }
