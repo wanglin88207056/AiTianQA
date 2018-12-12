@@ -17,7 +17,7 @@ export class ChatDetailsPage {
 
   chatUserName: string;
   isOpenEmojiPicker = false;
-  messageList: any;
+  messageList: ChatMessage[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -28,7 +28,7 @@ export class ChatDetailsPage {
   ionViewDidEnter(){
     this.getMessages()
       .then(() => {
-        this.scrollToBottom;
+        this.scrollToBottom();
       })
   }
 
@@ -38,7 +38,7 @@ export class ChatDetailsPage {
   getMessages(){
     return this.chatService.getMessageList()
       .then(res => {
-        this.messageList = res;
+        this.messageList = res["array"] as ChatMessage[];
       })
       .catch(error =>{
         console.error(error);
