@@ -6,7 +6,7 @@
 <ion-content>
   <div class="message-wrap">
 
-    <div class="message right" *ngFor="let m of messageList">
+    <div class="message" [class.left]="m.userId === chatUserId" [class.right]="m.userId === userId"  *ngFor="let m of messageList">
       <img [src]="m.userImgUrl" class="user-img">
       <div class="msg-detail">
         <div class="msg-info">
@@ -29,15 +29,18 @@
         </button>
       </ion-col>
       <ion-col col-8>
-        <ion-textarea placeholder="输入内容"></ion-textarea>
+        <ion-textarea #chatInput [(ngModel)]="editorMessage"
+                      (keyup.enter)="sendMessage();"
+                      (focus)="focus();"
+                      placeholder="输入内容"></ion-textarea>
       </ion-col>
       <ion-col col-2>
-        <button ion-button clear icon-only item-right>
+        <button ion-button clear icon-only item-right (click)="sendMessage();">
           <ion-icon name="send"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <emojipicker *ngIf="isOpenEmojiPicker"></emojipicker>
+  <emojipicker *ngIf="isOpenEmojiPicker" [(ngModel)]="editorMessage"></emojipicker>
 </ion-footer>
 

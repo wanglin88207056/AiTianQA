@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Events} from "ionic-angular";
 
 /*
   Generated class for the ChatServiceProvider provider.
@@ -30,7 +31,8 @@ export class UserInfo {
 @Injectable()
 export class ChatServiceProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient,
+              public event: Events) {
 
   }
 
@@ -42,6 +44,38 @@ export class ChatServiceProvider {
     return this.http.get(url)
       .toPromise()
       .catch(error => Promise.reject(error || "错误信息"))
+  }
+
+  sendMessage(message:ChatMessage){
+    return new Promise(resolve => setTimeout(() => {
+      resolve(message);
+      },Math.random()*1000))
+      .then(() => {
+        this.mockNewMessage(message);
+      })
+  }
+
+
+/*
+* 模拟对方回复了一个消息，
+* 前台为了及时接收这个回复消息，引入event模块*/
+  mockNewMessage(message:ChatMessage){
+    const id = Date.now().toString();
+    let messageSend = {
+      messageId : id,
+      userId: '123321',
+      username: '高圆圆',
+      userImgUrl: 'https://imoocqa.gugujiankong.com/users/5bd15d35647eb42d8c013aa2.jpg',
+      toUserId: message.userId,
+      time: Date.now(),
+      message: message.username+'，你是个好人，但是我们不合适...',
+      status: 'success'
+    };
+
+    setTimeout(() => {
+      this.event.publish('chat.received',messageSend,Date.now())
+    },Math.random()*1000)
+
   }
 
 }

@@ -22,8 +22,8 @@ export class ChatPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams) {
     this.userInfo = {
-      userid: '9527',
-      username: '路人甲'
+      userid: '123321',
+      username: '高圆圆'
     };
     this.ChatDetailsPage = ChatDetailsPage;
   }
