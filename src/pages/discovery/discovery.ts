@@ -25,7 +25,7 @@ export class DiscoveryPage extends BaseUI{
   }
 
   getQuestions() {
-    var loading = super.showLoading(this.loadingCtrl, "加载中...");
+    var loading = super.showLoading(this.loadingCtrl,"加载中...");
     this.rest.getQuestions()
       .subscribe(
         q => {

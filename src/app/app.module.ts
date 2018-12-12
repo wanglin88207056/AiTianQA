@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
+import { HttpModule } from '@angular/http';
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -27,6 +28,9 @@ import {QuestionPage} from "../pages/question/question";
 import {DetailsPage} from "../pages/details/details";
 import {AnswerPage} from "../pages/answer/answer";
 import {ChatDetailsPage} from "../pages/chat-details/chat-details";
+import { EmojiProvider } from '../providers/emoji/emoji';
+import {ComponentsModule} from "../components/components.module";
+import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 
 
 @NgModule({
@@ -51,9 +55,11 @@ import {ChatDetailsPage} from "../pages/chat-details/chat-details";
     BrowserModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
+    HttpModule,
     IonicModule.forRoot(MyApp,{
       backButtonText: '返回'
     }),
+    ComponentsModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -82,7 +88,9 @@ import {ChatDetailsPage} from "../pages/chat-details/chat-details";
     File,
     FileTransfer,
     FilePath,
-    Camera
+    Camera,
+    EmojiProvider,
+    ChatServiceProvider
   ]
 })
 export class AppModule {}

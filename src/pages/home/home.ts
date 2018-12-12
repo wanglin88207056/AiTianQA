@@ -46,7 +46,7 @@ export class HomePage extends BaseUI {
   }
 
   getFeeds() {
-    var loading = super.showLoading(this.loadingCtrl, "加载中...");
+    var loading = super.showLoading(this.loadingCtrl,"加载中...");
     this.rest.getFeeds()
       .subscribe(
         f => {
