@@ -31,6 +31,8 @@ import {ChatDetailsPage} from "../pages/chat-details/chat-details";
 import { EmojiProvider } from '../providers/emoji/emoji';
 import {ComponentsModule} from "../components/components.module";
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
+import {RelativetimePipe} from "../pipes/relativetime/relativetime";
+import {UserdatalistPage} from "../pages/userdatalist/userdatalist";
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { ChatServiceProvider } from '../providers/chat-service/chat-service';
     RegisterPage,
     UserPage,
     HeadfacePage,
-    TabsPage
+    TabsPage,
+    RelativetimePipe,
+    UserdatalistPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +82,8 @@ import { ChatServiceProvider } from '../providers/chat-service/chat-service';
     RegisterPage,
     UserPage,
     HeadfacePage,
-    TabsPage
+    TabsPage,
+    UserdatalistPage
   ],
   providers: [
     StatusBar,

@@ -150,6 +150,26 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlQuestionList);
   }
 
+  /*请求通知页信息流 *
+* @private
+* @param {string} userid
+* @returns {Observable<string[]>}
+* @memberof RestProvider
+*/
+  getUserNotification(userId): Observable<string[]>{
+  return this.getUrlReturn(this.apiUrlUserNotifications+"?userid="+userId);
+}
+
+  /*获取用户相关问题列表 *
+* @private
+* @param {string} userid
+* @param {string} type question/answer/favourite
+* @returns {Observable<string[]>}
+* @memberof RestProvider
+*/
+  getUserQuestionList(userId,type): Observable<string[]>{
+    return this.getUrlReturn(this.apiGetUserQuestionList+"?userid=" + userId + "&type=" + type);
+  }
 
   /**
    * 全局获取 HTTP 请求的方法

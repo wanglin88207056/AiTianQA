@@ -5,22 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>通知</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let n of notificationList" (click)="gotoDetails(n.QuestionId);">
       <ion-avatar item-left>
-        <img src="" alt="">
+        <img src="{{n.Headface}}" alt="">
       </ion-avatar>
-      <h2></h2>
-      <p></p>
+      <h2>{{n.NotificationTitle}}</h2>
+      <p>{{n.NotificationMessage}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

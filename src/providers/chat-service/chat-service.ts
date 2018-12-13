@@ -46,6 +46,7 @@ export class ChatServiceProvider {
       .catch(error => Promise.reject(error || "错误信息"))
   }
 
+  //发送消息并改变消息的状态
   sendMessage(message:ChatMessage){
     return new Promise(resolve => setTimeout(() => {
       resolve(message);
@@ -72,6 +73,7 @@ export class ChatServiceProvider {
       status: 'success'
     };
 
+    //进行消息发布广播
     setTimeout(() => {
       this.event.publish('chat.received',messageSend,Date.now())
     },Math.random()*1000)

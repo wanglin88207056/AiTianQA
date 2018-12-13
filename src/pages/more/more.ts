@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import {BaseUI} from "../../common/baseui";
 import {RestProvider} from "../../providers/rest/rest";
 import {UserPage} from "../user/user";
+import {UserdatalistPage} from "../userdatalist/userdatalist";
 
 
 /**
@@ -36,10 +37,6 @@ export class MorePage extends BaseUI{
               public rest: RestProvider) {
     super();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MorePage');
-  }
   showModal(){
     let modal = this.modalCtr.create(LoginPage);
     // 关闭后的回调
@@ -48,7 +45,7 @@ export class MorePage extends BaseUI{
     });
     modal.present();
   }
-  ionViewDidEnter(){
+  ionViewDidLoad(){
     this.loadUserPage();
   }
   loadUserPage(){
@@ -79,4 +76,9 @@ export class MorePage extends BaseUI{
   gotoUserPage(){
     this.navCtrl.push(UserPage);
   }
+
+  gotoDataList(type){
+    this.navCtrl.push(UserdatalistPage,{"dataType":type})
+  }
+
 }

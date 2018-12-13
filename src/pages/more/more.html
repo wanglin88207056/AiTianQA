@@ -30,5 +30,22 @@
         <p>产看个人主页或编辑简介</p>
       </button>
     </ion-list>
+    <ion-list class="marginTop">
+      <ion-list-header>
+        我的慕课
+      </ion-list-header>
+      <button ion-item (click)="gotoDataList('question');">
+        <ion-icon name="paper" item-start color="primary"></ion-icon>
+        <ion-label>我的提问</ion-label>
+      </button>
+      <button ion-item (click)="gotoDataList('favourite');">
+        <ion-icon name="star" item-start color="orange"></ion-icon>
+        <ion-label>我的关注</ion-label>
+      </button>
+      <button ion-item (click)="gotoDataList('answer');">
+        <ion-icon name="disc" item-start color="secondary"></ion-icon>
+        <ion-label>我的回答</ion-label>
+      </button>
+    </ion-list>
   </div>
 </ion-content>

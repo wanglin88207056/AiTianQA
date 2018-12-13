@@ -25,9 +25,9 @@ export class ChatDetailsPage {
   isOpenEmojiPicker = false;
   messageList: ChatMessage[];
   errorMessage: any;
-  editorMessage: string;
-  @ViewChild(Content) content: Content;
-  @ViewChild('chatInput') messageInput: TextInput;
+  editorMessage: string = '';
+  @ViewChild(Content) content: Content; //全局的Content
+  @ViewChild('chatInput') messageInput: TextInput; //获取前台的输入框
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -66,9 +66,11 @@ export class ChatDetailsPage {
     //听取消息的发布（订阅）
     this.event.subscribe('chat.received',(msg,time) =>{
       this.messageList.push(msg);
+      this.scrollToBottom();
     })
   }
 
+  //取消事件订阅
   ionicViewWillLeave(){
     this.event.unsubscribe('chat.received');
   }
