@@ -7,6 +7,8 @@ import {RestProvider} from "../../providers/rest/rest";
 import {UserPage} from "../user/user";
 import {UserdatalistPage} from "../userdatalist/userdatalist";
 import {SettingsProvider} from "../../providers/settings/settings";
+import {ScanPage} from "../scan/scan";
+import {VersionPage} from "../version/version";
 
 
 /**
@@ -82,10 +84,25 @@ export class MorePage extends BaseUI{
     this.navCtrl.push(UserPage);
   }
 
+  //去个人中心其他列表页
   gotoDataList(type){
     this.navCtrl.push(UserdatalistPage,{"dataType":type})
   }
 
+  /*
+  跳转到扫描二维码页面，加上animate = false的参数是为了相机能够在整个屏幕中显示，
+  如果不加，相机就出不来
+  animate参数默认为true
+  * */
+  gotoScanQRCode(){
+    this.navCtrl.push(ScanPage,null,{"animate": false});
+  }
+
+  gotoVersions(){
+    this.navCtrl.push(VersionPage);
+  }
+
+  //切换夜间模式
   toggleChangeTheme(){
     if(this.selectedTheme  === 'dark-theme'){
       this.settings.setActiveTheme('light-theme')
@@ -93,5 +110,7 @@ export class MorePage extends BaseUI{
       this.settings.setActiveTheme('dark-theme')
     }
   }
+
+
 
 }
