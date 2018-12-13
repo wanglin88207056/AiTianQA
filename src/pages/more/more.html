@@ -47,5 +47,15 @@
         <ion-label>我的回答</ion-label>
       </button>
     </ion-list>
+    <ion-list class="marginTop">
+      <ion-list-header>
+        设置
+      </ion-list-header>
+      <ion-item>
+        <ion-icon name="cloudy-night" item-start color="purple"></ion-icon>
+        <ion-label>夜间模式</ion-label>
+        <ion-toggle color="purple" (ionChange)="toggleChangeTheme();"></ion-toggle>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

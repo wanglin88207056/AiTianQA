@@ -6,6 +6,7 @@ import {BaseUI} from "../../common/baseui";
 import {RestProvider} from "../../providers/rest/rest";
 import {UserPage} from "../user/user";
 import {UserdatalistPage} from "../userdatalist/userdatalist";
+import {SettingsProvider} from "../../providers/settings/settings";
 
 
 /**
@@ -24,6 +25,7 @@ export class MorePage extends BaseUI{
 
   public notLogin: boolean = true;
   public logined:boolean = false;
+  selectedTheme: string;
 
   headface: string;
   userinfo: string[];
@@ -34,8 +36,11 @@ export class MorePage extends BaseUI{
               public storage: Storage,
               public loadingCtrl: LoadingController,
               public toastCtrl: ToastController,
-              public rest: RestProvider) {
+              public rest: RestProvider,
+              private settings: SettingsProvider
+              ) {
     super();
+    this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
   }
   showModal(){
     let modal = this.modalCtr.create(LoginPage);
@@ -79,6 +84,14 @@ export class MorePage extends BaseUI{
 
   gotoDataList(type){
     this.navCtrl.push(UserdatalistPage,{"dataType":type})
+  }
+
+  toggleChangeTheme(){
+    if(this.selectedTheme  === 'dark-theme'){
+      this.settings.setActiveTheme('light-theme')
+    }else{
+      this.settings.setActiveTheme('dark-theme')
+    }
   }
 
 }
