@@ -94,3 +94,9 @@ $colors: (
 //这里导入的是两套主题样式
 @import "theme.light";
 @import "theme.dark";
+ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-decor {
+  background: transparent none !important;
+  .tabbar.show-tabbar{
+    opacity: 0;
+  }
+}
